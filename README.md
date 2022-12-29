@@ -1,58 +1,71 @@
-# Fastorch
-A pytorch project for fast runing deep learning and iterating version.
+# Readme
 
-# Files
+### 
 
-```text
-run.py # main function for runing
-trainer.py # trainer, train and test model
-config.yaml # global config file, loaded in run.py
-dataset.py # define personal dataset, used in run.py with dataloader
-loss.py # define personal loss, used in train.py
-net.py # define personal network, used in run.py
-utils.py # define other functions
+### 简要描述
+
+**数据增强**
+
+由于对图片没有任何假设，例如图像没有对齐，所以要对图片进行预处理。
+
+改变对比度饱和度：T.ColorJitter()
+
+随机旋转: T.RandomHorizontalFlip()
+
+水平翻转: T.RandomVerticalFlip()
+
+**训练网络**
+
+**MobileFaceNet**:
+
+由于此任务的类别比较多，且任务目标与人脸识别接近，均为图像处理任务。所以选取人脸识别中的轻量化模型MobileFaceNet[1]
+
+![MFN structure](./MFN.png)
+
+**损失计算**
+
+损失计算: areface
+
+areface损失函数是人脸识别的常用损失
+
+$ L_{Arcface} = \frac{1}{N} \sum_{i=1}^{N}log\frac{e^{s(cos(\theta _{yi}+m))}}{e^{s(cos(\theta _{yi}+m))+ {\textstyle \sum_{j=1,j\neq yi}^{n}e^{scos\theta_{j}}} }} $  
+
+### **运行步骤**
+将数据集文件`efficient_fashion_matching`放在项目的一级目录下
+```bash
+# train model
+python run.py --cuda=True --device_ids=0,1 --batch_size=128 --arcface=True
+# test best model
+python run.py --load_epoch=best --match_factor=3 --cuda=True --device_ids=0,1 --batch_size=128
 ```
 
-# Usage
+### **测试方式**
 
-```bas
-# define your dataset, loss, net, trainer and config file
-ssh run.sh
+验证集：划分了400个类给验证集
+
+测试集：所给的测试集
+
+训练集：所给的训练集减去验证集的数据
+
+用训练集训练模型，用验证集验证模型，用测试集评估模型
+
+匹配机制：设置了match_factor参数，取 测试/验证图片数量*match_factor 作为匹配数量，取对应数量的匹配数量和不匹配数量，让匹配数量照片和不匹配数量照片保持相等，比例各占1/2。
+
+评估指标：计算EER。该值表明错误接受的比例等于错误拒绝的比例。等错误率值越低，识别系统的准确度越高
+
+### **测试结果**
+
+```bash
+INFO:utils:FasionMatching-v1
+INFO:utils:Model Testing...
+INFO:utils:Select Match Samples for test...
+INFO:utils:EER: 0.88%	Thresh: 0.304
 ```
 
-# Change Log
-### 2022-11-09
-+ add `load_in_memory` for dataset for speed training
-+ remove some above functions (Doesn't work well in the actual version iteration):
-  + save version project file for each version
-    + type of saved files is defined by `save_version_file_patterns` in config file
-    + if `load_epoch` in config file is set false, save files in `runs/latest_project` and `runs/version/project`
-    + ~~if `load_epoch` in config file is set epoch name in saved model file~~
-      + ~~save latest files in `runs/latest_project`.~~
-      + ~~load files from `runs/version/project` for testing~~
-      + ~~restore latest files from `runs/latest_project`.~~ 
+最终模型在测试集上的等错误率(EER)为0.88%
 
-### 2022-07-05
-+ save version project file for each version
-  + type of saved files is defined by `save_version_file_patterns` in config file
-  + if `load_epoch` in config file is set false, save files in `runs/latest_project` and `runs/version/project`
-  + if `load_epoch` in config file is set epoch name in saved model file
-    + save latest files in `runs/latest_project`
-    + load files from `runs/version/project` for testing
-    + restore latest files from `runs/latest_project`
-+ save tensorboard file, running log, config file, model state dict for each version
-  + use `tensorboard --logdir=runs` for visualization
-  + load model parameters from saved model files
-  + read runing log for training output
-+ easily change train parameters
-  + `random_seed`: set random seed for each training
-  + `epochs`: set total training epochs
-  + `batch_size`: set batch size
-  + `num_workers`: set number of processes
-  + `lr`: set learning rate
-  + `device_ids`: gpu device ids, use cpu if none; if its number greater than 1, use data parallel
-  + `valid_every_epochs`: epochs of validing model
-  + `early_stop_epochs`: epochs of early stop, set negative number for not using
-  + `start_save_model_epochs`: greater than it will save model
-  + `save_model_interval_epochs`: interval epochs for saving model
-+ add parameters in config file to args, so it can use `args.xxx` to use these parameters easily
+### **参考资料**
+
+[1] Chen S, Liu Y, Gao X, et al. Mobilefacenets: Efficient cnns for accurate real-time face verification on mobile devices[C]//Chinese Conference on Biometric Recognition. Springer, Cham, 2018: 428-438.
+
+[2] [https://github.com/Xiaoccer/MobileFaceNet_Pytorch](https://github.com/Xiaoccer/MobileFaceNet_Pytorch)

@@ -12,6 +12,10 @@ import random
 import numpy as np
 import torch
 
+from scipy.optimize import brentq
+from scipy.interpolate import interp1d
+from sklearn.metrics import roc_curve
+
 sep = os.sep
 
 
@@ -103,6 +107,15 @@ def setup_seed(seed):
     torch.backends.cudnn.deterministic = True
 
 
+def set_type(value):
+    if value.lower() == 'true':
+        return True
+    elif value.lower() == 'false':
+        return False
+    else:
+        return value
+
+
 def name2label(file_names):
     class_names = []
     for file_name in file_names:
@@ -124,6 +137,56 @@ def split_train_valid(file_list, class_names, num_valid_class=100):
         else:
             valid_file_list.append(file_name)
     return train_file_list, valid_file_list
+
+
+def solve_eer(scores: np.ndarray, labels: np.ndarray) -> tuple:
+    fpr, tpr, thresholds = roc_curve(labels, scores)
+    ret = brentq(lambda x: 1. - x - interp1d(fpr, tpr)(x), 0., 1.)
+    thresh = interp1d(fpr, thresholds)(ret)
+    return ret * 100, thresh
+
+def solve_accuarcy(scores, labels, thresh):
+    predicts = np.zeros_like(labels, dtype=int)
+    predicts[scores >= thresh] = 1
+    acc = np.sum(predicts == labels) / labels.shape[0]
+    return acc * 100
+
+def get_match_files(file_list, name2label, factor=4):
+    match_num = factor * len(file_list)
+    not_match_num = match_num
+    label_list = []
+    for file_name in file_list:
+        class_name = re.findall('\w+_[0-9]', os.path.split(file_name)[-1])[0][:-2]
+        label_list.append(name2label[class_name])
+    file_list, label_list = np.array(file_list), np.array(label_list)
+    match_file_list, not_match_file_list = [], []
+    match_file_str, not_match_file_str = set(), set()
+    while len(match_file_str) <= match_num:
+        file_name1 = np.random.choice(file_list)
+        class_name = re.findall('\w+_[0-9]', os.path.split(file_name1)[-1])[0][:-2]
+        label = name2label[class_name]
+        file_name2 = np.random.choice(file_list[label_list == label])
+        match_file_list.append([file_name1, file_name2])
+        match_file_str.add(file_name1 + file_name2)
+        print(f'Match: [{len(match_file_str)}/{match_num}]')
+    while len(not_match_file_str) <= not_match_num:
+        file_name1 = np.random.choice(file_list)
+        class_name = re.findall('\w+_[0-9]', os.path.split(file_name1)[-1])[0][:-2]
+        label = name2label[class_name]
+        file_name2 = np.random.choice(file_list[label_list != label])
+        not_match_file_list.append([file_name1, file_name2])
+        not_match_file_str.add(file_name1 + file_name2)
+        print(f'Not Match: [{len(not_match_file_str)}/{not_match_num}]')
+    match_file_list, not_match_file_list = list(match_file_list), list(not_match_file_list)
+    final_file_list = match_file_list + not_match_file_list
+    file_list1, file_list2 = [], []
+    for file_name1, file_name2 in final_file_list:
+        file_list1.append(file_name1)
+        file_list2.append(file_name2)
+    return file_list1, file_list2
+
+
+
 
 
 if __name__ == '__main__':

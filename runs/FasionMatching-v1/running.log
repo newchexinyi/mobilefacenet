@@ -1,7 +1,205 @@
 INFO:utils:FasionMatching-v1
+INFO:utils:Model Training...
+INFO:utils:Select Match Samples for valid...
+INFO:utils:Epoch-0	loss:14.573
+INFO:utils:EER: 35.71%	Thresh: 0.790
+INFO:utils:Epoch-1	loss:13.175
+INFO:utils:Epoch-2	loss:12.798
+INFO:utils:Epoch-3	loss:12.480
+INFO:utils:Epoch-4	loss:12.526
+INFO:utils:Epoch-5	loss:12.170
+INFO:utils:EER: 25.41%	Thresh: 0.862
 INFO:utils:FasionMatching-v1
+INFO:utils:Model Testing...
+INFO:utils:Select Match Samples for test...
 INFO:utils:FasionMatching-v1
+INFO:utils:Model Training...
+INFO:utils:Select Match Samples for valid...
+INFO:utils:Epoch-0	loss:17.805
+INFO:utils:EER: 34.02%	Thresh: 0.754
+INFO:utils:Epoch-1	loss:16.422
+INFO:utils:Epoch-2	loss:16.009
+INFO:utils:Epoch-3	loss:15.697
+INFO:utils:Epoch-4	loss:15.729
+INFO:utils:Epoch-5	loss:15.370
+INFO:utils:EER: 23.75%	Thresh: 0.909
+INFO:utils:Epoch-6	loss:15.410
+INFO:utils:Epoch-7	loss:14.952
+INFO:utils:Epoch-8	loss:14.893
+INFO:utils:Epoch-9	loss:14.358
+INFO:utils:Epoch-10	loss:14.235
+INFO:utils:EER: 13.32%	Thresh: 0.634
+INFO:utils:Epoch-11	loss:13.746
+INFO:utils:Epoch-12	loss:13.546
+INFO:utils:Epoch-13	loss:13.121
+INFO:utils:Epoch-14	loss:12.746
+INFO:utils:Epoch-15	loss:12.369
+INFO:utils:EER: 7.00%	Thresh: 0.604
+INFO:utils:Epoch-16	loss:11.793
+INFO:utils:Epoch-17	loss:11.539
+INFO:utils:Epoch-18	loss:10.802
+INFO:utils:Epoch-19	loss:10.686
+INFO:utils:Epoch-20	loss:9.851
+INFO:utils:EER: 4.98%	Thresh: 0.535
+INFO:utils:Epoch-21	loss:9.798
+INFO:utils:Epoch-22	loss:8.938
+INFO:utils:Epoch-23	loss:8.879
+INFO:utils:Epoch-24	loss:8.080
+INFO:utils:Epoch-25	loss:7.962
+INFO:utils:EER: 5.40%	Thresh: 0.600
+INFO:utils:Epoch-26	loss:7.279
+INFO:utils:Epoch-27	loss:7.054
+INFO:utils:Epoch-28	loss:6.552
+INFO:utils:Epoch-29	loss:6.168
+INFO:utils:Epoch-30	loss:5.854
+INFO:utils:EER: 2.55%	Thresh: 0.427
+INFO:utils:Epoch-31	loss:5.308
+INFO:utils:Epoch-32	loss:5.187
+INFO:utils:Epoch-33	loss:4.528
+INFO:utils:Epoch-34	loss:4.555
+INFO:utils:Epoch-35	loss:3.840
+INFO:utils:EER: 2.55%	Thresh: 0.485
+INFO:utils:Epoch-36	loss:3.952
+INFO:utils:Epoch-37	loss:3.286
+INFO:utils:Epoch-38	loss:3.373
+INFO:utils:Epoch-39	loss:2.816
+INFO:utils:Epoch-40	loss:2.864
+INFO:utils:EER: 3.07%	Thresh: 0.507
+INFO:utils:Epoch-41	loss:2.459
+INFO:utils:Epoch-42	loss:2.383
+INFO:utils:Epoch-43	loss:2.154
+INFO:utils:Epoch-44	loss:1.975
+INFO:utils:Epoch-45	loss:1.904
+INFO:utils:EER: 1.69%	Thresh: 0.372
+INFO:utils:Epoch-46	loss:1.644
+INFO:utils:Epoch-47	loss:1.666
+INFO:utils:Epoch-48	loss:1.349
+INFO:utils:Epoch-49	loss:1.477
+INFO:utils:Epoch-50	loss:1.136
+INFO:utils:EER: 3.00%	Thresh: 0.490
+INFO:utils:Epoch-51	loss:1.272
+INFO:utils:Epoch-52	loss:0.973
+INFO:utils:Epoch-53	loss:1.096
+INFO:utils:Epoch-54	loss:0.858
+INFO:utils:Epoch-55	loss:0.932
+INFO:utils:EER: 2.14%	Thresh: 0.405
+INFO:utils:Epoch-56	loss:0.776
+INFO:utils:Epoch-57	loss:0.784
+INFO:utils:Epoch-58	loss:0.720
+INFO:utils:Epoch-59	loss:0.655
+INFO:utils:Epoch-60	loss:0.668
+INFO:utils:EER: 1.52%	Thresh: 0.345
+INFO:utils:Epoch-61	loss:0.550
+INFO:utils:Epoch-62	loss:0.621
+INFO:utils:Epoch-63	loss:0.471
+INFO:utils:Epoch-64	loss:0.565
+INFO:utils:Epoch-65	loss:0.417
+INFO:utils:EER: 1.86%	Thresh: 0.369
+INFO:utils:Epoch-66	loss:0.521
+INFO:utils:Epoch-67	loss:0.377
+INFO:utils:Epoch-68	loss:0.463
+INFO:utils:Epoch-69	loss:0.352
+INFO:utils:Epoch-70	loss:0.403
+INFO:utils:EER: 1.83%	Thresh: 0.416
+INFO:utils:Epoch-71	loss:0.341
+INFO:utils:Epoch-72	loss:0.350
+INFO:utils:Epoch-73	loss:0.332
+INFO:utils:Epoch-74	loss:0.302
+INFO:utils:Epoch-75	loss:0.327
+INFO:utils:EER: 1.50%	Thresh: 0.343
+INFO:utils:Epoch-76	loss:0.264
+INFO:utils:Epoch-77	loss:0.315
+INFO:utils:Epoch-78	loss:0.229
+INFO:utils:Epoch-79	loss:0.310
+INFO:utils:Epoch-80	loss:0.213
+INFO:utils:EER: 1.70%	Thresh: 0.347
+INFO:utils:Epoch-81	loss:0.290
+INFO:utils:Epoch-82	loss:0.199
+INFO:utils:Epoch-83	loss:0.257
+INFO:utils:Epoch-84	loss:0.197
+INFO:utils:Epoch-85	loss:0.235
+INFO:utils:EER: 1.63%	Thresh: 0.362
+INFO:utils:Epoch-86	loss:0.198
+INFO:utils:Epoch-87	loss:0.206
+INFO:utils:Epoch-88	loss:0.202
+INFO:utils:Epoch-89	loss:0.185
+INFO:utils:Epoch-90	loss:0.206
+INFO:utils:EER: 1.32%	Thresh: 0.322
+INFO:utils:Epoch-91	loss:0.162
+INFO:utils:Epoch-92	loss:0.206
+INFO:utils:Epoch-93	loss:0.145
+INFO:utils:Epoch-94	loss:0.203
+INFO:utils:Epoch-95	loss:0.137
+INFO:utils:EER: 1.55%	Thresh: 0.371
+INFO:utils:Epoch-96	loss:0.195
+INFO:utils:Epoch-97	loss:0.132
+INFO:utils:Epoch-98	loss:0.173
+INFO:utils:Epoch-99	loss:0.133
+INFO:utils:Epoch-100	loss:0.165
+INFO:utils:EER: 1.62%	Thresh: 0.356
+INFO:utils:Epoch-101	loss:0.139
+INFO:utils:Epoch-102	loss:0.143
+INFO:utils:Epoch-103	loss:0.146
+INFO:utils:Epoch-104	loss:0.131
+INFO:utils:Epoch-105	loss:0.149
+INFO:utils:EER: 1.26%	Thresh: 0.317
+INFO:utils:Epoch-106	loss:0.113
+INFO:utils:Epoch-107	loss:0.155
+INFO:utils:Epoch-108	loss:0.104
+INFO:utils:Epoch-109	loss:0.149
+INFO:utils:Epoch-110	loss:0.096
+INFO:utils:EER: 1.41%	Thresh: 0.326
+INFO:utils:Epoch-111	loss:0.140
+INFO:utils:Epoch-112	loss:0.096
+INFO:utils:Epoch-113	loss:0.135
+INFO:utils:Epoch-114	loss:0.100
+INFO:utils:Epoch-115	loss:0.119
+INFO:utils:EER: 1.50%	Thresh: 0.361
+INFO:utils:Epoch-116	loss:0.104
+INFO:utils:Epoch-117	loss:0.107
+INFO:utils:Epoch-118	loss:0.109
+INFO:utils:Epoch-119	loss:0.099
+INFO:utils:Epoch-120	loss:0.119
+INFO:utils:EER: 1.23%	Thresh: 0.312
+INFO:utils:Epoch-121	loss:0.088
+INFO:utils:Epoch-122	loss:0.120
+INFO:utils:Epoch-123	loss:0.081
+INFO:utils:Epoch-124	loss:0.112
+INFO:utils:Epoch-125	loss:0.076
+INFO:utils:EER: 1.55%	Thresh: 0.396
+INFO:utils:Epoch-126	loss:0.110
+INFO:utils:Epoch-127	loss:0.076
+INFO:utils:Epoch-128	loss:0.109
+INFO:utils:Epoch-129	loss:0.077
+INFO:utils:Epoch-130	loss:0.100
+INFO:utils:EER: 1.55%	Thresh: 0.314
+INFO:utils:Epoch-131	loss:0.084
+INFO:utils:Epoch-132	loss:0.089
+INFO:utils:Epoch-133	loss:0.089
+INFO:utils:Epoch-134	loss:0.075
+INFO:utils:Epoch-135	loss:0.092
+INFO:utils:EER: 1.13%	Thresh: 0.311
+INFO:utils:Epoch-136	loss:0.068
+INFO:utils:Epoch-137	loss:0.094
+INFO:utils:Epoch-138	loss:0.064
+INFO:utils:Epoch-139	loss:0.096
+INFO:utils:Epoch-140	loss:0.062
+INFO:utils:EER: 1.52%	Thresh: 0.323
+INFO:utils:Epoch-141	loss:0.097
+INFO:utils:Epoch-142	loss:0.062
+INFO:utils:Epoch-143	loss:0.088
+INFO:utils:Epoch-144	loss:0.065
+INFO:utils:Epoch-145	loss:0.082
+INFO:utils:EER: 2.14%	Thresh: 0.451
+INFO:utils:Epoch-146	loss:0.069
+INFO:utils:Epoch-147	loss:0.076
+INFO:utils:Epoch-148	loss:0.072
+INFO:utils:Epoch-149	loss:0.065
+INFO:utils:Epoch-150	loss:0.079
+INFO:utils:EER: 1.12%	Thresh: 0.300
+INFO:utils:Epoch-151	loss:0.057
+INFO:utils:Epoch-152	loss:0.078
 INFO:utils:FasionMatching-v1
-INFO:utils:FasionMatching-v1
-INFO:utils:FasionMatching-v1
-INFO:utils:FasionMatching-v1
+INFO:utils:Model Testing...
+INFO:utils:Select Match Samples for test...
+INFO:utils:EER: 0.88%	Thresh: 0.304

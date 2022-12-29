@@ -94,6 +94,7 @@ class MobileFacenet(nn.Module):
 
         self.linear1 = ConvBlock(512, 128, 1, 1, 0, linear=True)
 
+        self.arcface = arcface
         self.fc_out = ArcMarginProduct(in_features=128, out_features=num_class, s=s, m=m) \
                         if arcface else nn.Linear(128, num_class)
 
@@ -117,16 +118,19 @@ class MobileFacenet(nn.Module):
 
         return nn.Sequential(*layers)
 
-    def forward(self, x):
+    def forward(self, x, label=None):
         x = self.conv1(x)
         x = self.dw_conv1(x)
         x = self.blocks(x)
         x = self.conv2(x)
         x = self.linear7(x)
         x = self.linear1(x)
-        x = x.view(x.size(0), -1)
-        out = self.fc_out(x)
-        return out
+        features = x.view(x.size(0), -1)
+        if self.training:
+            out = self.fc_out(features, label) if self.arcface else self.fc_out(features)
+        else:
+            out = features
+        return out, features
 
 
 class ArcMarginProduct(nn.Module):
@@ -157,7 +161,7 @@ class ArcMarginProduct(nn.Module):
         else:
             phi = torch.where((cosine - self.th) > 0, phi, cosine - self.mm)
 
-        one_hot = torch.zeros(cosine.size(), device='cuda')
+        one_hot = torch.zeros(cosine.size()).to(cosine.device)
         one_hot.scatter_(1, label.view(-1, 1).long(), 1)
         output = (one_hot * phi) + ((1.0 - one_hot) * cosine)
         output *= self.s
